@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMI Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="header-item logo">
+        <img src="https://lirp.cdn-website.com/cbb308a2/dms3rep/multi/opt/Autokiniton+Horiz+1-1920w.png" alt="Company Logo">
+    </div>
+    <div class="header-item-op">
+        <p>GM413 OP700</p>
+    </div>
+    <div class="header-item">
+        <p><span id="time"></span></p>
+    </div>
+</header>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <button id="showProduction">PRODUCTION</button>
+    <button id="showBotStatus">BOT STATUS</button>
+    <!-- Additional buttons can be added here for more screens -->
+</nav>
+
+<!-- Production Screen -->
+<div id="productionScreen" class="screen active">
+    <!-- Production screen content -->
+    <!-- Add more content here as needed -->
+    <!-- Cycle Time Section -->
+    <section class="card cycle-time">
+        <h2>Cycle Time</h2>
+        <p>Current: <span id="currentCycleTime">0</span></p>
+        <p>Target: <span id="targetTime">00:46</span></p>
+        <div class="cycle-progress-bar-container">
+            <div id="cycle-progress-bar" class="cycle-progress-bar"></div>
+        </div>
+    </section>
+    <!-- Production Count Section -->
+    <section class="card production-count">
+        <h2>Production Count</h2>
+        <p>Current Hour: <span>120</span></p>
+        <p>Previous Hour: <span>115</span></p>
+        <p>Total: <span>235</span></p>
+    </section>
+    <!-- Bin Count Section -->
+    <section class="card bin-count">
+        <h2>Bin Count</h2>
+        <p>Current: <span>49</span></p>
+        <p>Target: <span>170</span></p>
+        <div class="progress-bar-container"><div class="progress-bar2"></div></div>
+    </section>
+    <!-- Shift Details Sections -->
+    <!-- First Shift Section -->
+    <section class="card shift" id="first-shift">
+        <h2>1st Shift</h2>
+        <table>
+            <tr><th>Hour</th><th>Parts Produced</th></tr>
+            <!-- Row template, repeat as needed -->
+            <tr>
+                <td>5am - 6am</td>
+                <td>76</td>
+              </tr>
+              <tr>
+                <td>6am - 7am</td>
+                <td>82</td>
+              </tr>
+              <tr>
+                <td>7am - 8am</td>
+                <td>69</td>
+              </tr>
+              <tr>
+                <td>8am - 9am</td>
+                <td>81</td>
+              </tr>
+              <tr>
+                <td>9am - 10am</td>
+                <td>54</td>
+              </tr>
+              <tr>
+                <td>10am - 11am</td>
+                <td>88</td>
+              </tr>
+              <tr>
+                <td>11am - 12pm</td>
+                <td>71</td>
+              </tr>
+              <tr>
+                <td>12pm - 1pm</td>
+                <td>81</td>
+              </tr>
+            <!-- Add more rows here for additional hours -->
+        </table>
+    </section>
+    <!-- Second Shift Section -->
+    <section class="card shift" id="second-shift">
+        <h2>2nd Shift</h2>
+        <table>
+            <tr>
+                <th>Hour</th>
+                <th>Parts Produced</th>
+              </tr>
+              <!-- Table Rows -->
+              <tr>
+                <td>1pm - 2pm</td>
+                <td></td>
+                <tr>
+                  <td>2pm - 3pm</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>3pm - 4pm</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>4pm - 5pm</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5pm - 6pm</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>6pm - 7pm</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>7pm - 8pm</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>8pm - 9pm</td>
+                  <td></td>
+                </tr>
+              </tr>
+        </table>
+    </section>
+    <!-- Third Shift Section -->
+    <section class="card shift" id="third-shift">
+        <h2>3rd Shift</h2>
+        <table>
+            <tr>
+              <th>Hour</th>
+              <th>Parts Produced</th>
+            </tr>
+            <!-- Table Rows -->
+            <tr>
+              <td>9pm - 10pm</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>10pm - 11pm</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>11pm - 12am</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>12am - 1am</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>1am - 2am</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>2am - 3am</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>3am - 4am</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>4am - 5am</td>
+              <td></td>
+            </tr>
+          </table>
+    </section>
+</div>
+
+<!-- Robot Status Screen, initially hidden -->
+<div id="botStatusScreen" class="screen">
+    <div class="grid-container">
+        <div id="serviceCard" class="card interactive-card">
+            <h3>Service Status</h3>
+            <div><p><span id="time"></span></p></div>
+        </div>
+        <!-- More cards follow -->
+        <div id="card2" class="card interactive-card">
+            <p>ROBOT 1</p>
+            <p>status: running</p>
+        </div>
+        <div id="card3" class="card interactive-card">
+            <p>ROBOT 2</p>
+            <p>status: running</p>
+        </div>
+        <div id="card4" class="card interactive-card">
+            <p>ROBOT 3</p>
+            <p>status: running</p>
+        </div>
+        <div id="card5" class="card interactive-card">
+            <p>ROBOT 4</p>
+            <p>status: HOLD</p>
+        </div>
+        <div id="card6" class="card interactive-card">
+            <p>ROBOT 5</p>
+            <p>status: running</p>
+        </div>
+        <div id="card7" class="card interactive-card">
+            <p>ROBOT 6</p>
+            <p>status: running</p>
+        </div>
+        <div id="card8" class="card interactive-card">
+            <p>ROBOT 7</p>
+            <p>status: running</p>
+        </div>
+        <div id="card9" class="card interactive-card">
+            <p>ROBOT 8</p>
+            <p>status: running</p>
+        </div>
+        <div id="card10" class="card interactive-card">
+            <p>ROBOT 9</p>
+            <p>status: running</p>
+        </div>
+        <div id="card11" class="card interactive-card">
+            <p>ROBOT 10</p>
+            <p>status: running</p>
+        </div>
+        <div id="card12" class="card interactive-card">
+            <p>ROBOT 11</p>
+            <p>status: running</p>
+        </div>
+        <!-- Add other cards as needed -->
+    </div>
+</div>
+
+
+<!-- Additional screens can be added here with class 'screen hidden' -->
+
+<script src="Script.js"></script>
+</body>
+</html>
