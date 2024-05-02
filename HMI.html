@@ -186,58 +186,29 @@
 
 <!-- Robot Status Screen, initially hidden -->
 <div id="botStatusScreen" class="screen">
-    <div class="grid-container">
-        <div id="serviceCard" class="card interactive-card">
-            <h3>Service Status</h3>
-            <div><p><span id="time"></span></p></div>
-        </div>
-        <!-- More cards follow -->
-        <div id="card2" class="card interactive-card">
-            <p>ROBOT 1</p>
-            <p>status: running</p>
-        </div>
-        <div id="card3" class="card interactive-card">
-            <p>ROBOT 2</p>
-            <p>status: running</p>
-        </div>
-        <div id="card4" class="card interactive-card">
-            <p>ROBOT 3</p>
-            <p>status: running</p>
-        </div>
-        <div id="card5" class="card interactive-card">
-            <p>ROBOT 4</p>
-            <p>status: HOLD</p>
-        </div>
-        <div id="card6" class="card interactive-card">
-            <p>ROBOT 5</p>
-            <p>status: running</p>
-        </div>
-        <div id="card7" class="card interactive-card">
-            <p>ROBOT 6</p>
-            <p>status: running</p>
-        </div>
-        <div id="card8" class="card interactive-card">
-            <p>ROBOT 7</p>
-            <p>status: running</p>
-        </div>
-        <div id="card9" class="card interactive-card">
-            <p>ROBOT 8</p>
-            <p>status: running</p>
-        </div>
-        <div id="card10" class="card interactive-card">
-            <p>ROBOT 9</p>
-            <p>status: running</p>
-        </div>
-        <div id="card11" class="card interactive-card">
-            <p>ROBOT 10</p>
-            <p>status: running</p>
-        </div>
-        <div id="card12" class="card interactive-card">
-            <p>ROBOT 11</p>
-            <p>status: running</p>
-        </div>
-        <!-- Add other cards as needed -->
+    
+    <div id="card1" class="card interactive-card">
+        <p>Service</p>
+        <p>Next @ 10:30am</p>
     </div>
+    <!-- More cards follow -->
+    <div id="card2" class="card interactive-card">
+        <img src="images/BotIconActive.png" alt="Robot Running" class="status-icon">
+        <p id="botName">ROBOT 1&nbsp;</p>
+        <p>status: running</p>
+    </div>
+    <div id="card3" class="card interactive-card">
+        <img src="images/BotIconActive.png" alt="Robot Running" class="status-icon">
+        <p>ROBOT 2&nbsp;</p>
+        <p>status: running</p>
+    </div>
+    <div id="card3" class="card interactive-card">
+        <img src="images/BotIconFault.png" alt="Robot Faulted" class="status-icon">
+        <p>ROBOT 3&nbsp;</p>
+        <p>status: Fault</p>
+    </div>
+    
+    <!-- Add other cards as needed -->
 </div>
 
 

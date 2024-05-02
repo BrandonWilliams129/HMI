@@ -9,28 +9,29 @@ body, html {
 
 /* Header Styles */
 .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #333;
+    background-color: #222; /* Dark background for the header */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Padding around the content */
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space between items */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
 }
 
-.header-item, .header-item-op {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.header-item {
+    margin: 0 10px; /* Margin for each item */
 }
 
-.header-item-op {
-    font-weight: bold;
-    font-size: 25px;
-    text-decoration: underline;
+.header-item.logo img {
+    height: 50px; /* Adjust based on your logo's aspect ratio */
+    width: auto; /* Maintain aspect ratio */
 }
 
-.logo img {
-    max-width: 250px; /* Adjust as necessary */
-    height: auto;
+.header-item-op p {
+    font-size: 24px; /* Increase the font size */
+    font-family: 'Roboto', sans-serif; /* Sleeker font */
+    color: #ffffff; /* Adjust color if necessary */
+    font-weight: 700; /* Make it bold */
 }
 
 /* Screen Layout */
@@ -86,11 +87,11 @@ body, html {
     background-color: #555;
     border-radius: 5px;
     margin: 10px 0;
-    height: 20px; /* Ensuring height is defined for better visibility */
+    height: 5px; /* Ensuring height is defined for better visibility */
 }
 
 .cycle-progress-bar, .progress-bar2 {
-    height: 20px;
+    height: 5px;
     background-color: #9eff4e;
     border-radius: 5px;
     width: 50%; /* Start width, change via JavaScript */
@@ -116,7 +117,15 @@ body, html {
 /* Additional styles for new screens can be added here */
 /* For example, add styles for Robot Status screen if it has specific design requirements */
 /* Bot Status Screen Grid */
+
+.status-icon {
+    width: 50px; /* Adjust based on your preference */
+    height: auto; /* Keeps the aspect ratio of the image */
+    margin-right: 10px; /* Adds space between the icon and text */
+}
+
 .grid-container {
+    align-items: center;
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* Creates 5 equal columns */
     grid-template-rows: auto auto auto auto; /* Creates four rows, height adjusts to content */
@@ -135,9 +144,79 @@ body, html {
 .interactive-card {
     cursor: pointer; /* Indicates that the card is clickable */
     transition: transform 0.3s; /* Smooth transform on hover */
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    justify-content: start; /* Aligns items horizontally */
+}
+.interactive-card.botName {
+    padding-right: 25px;
+    margin-right: 25px;
 }
 
 .interactive-card:hover {
     transform: scale(1.05); /* Slightly enlarge cards on hover */
 }
-/* End of CSS */
+/* Updated styles */
+.card {
+    background-color: #333; /* updated */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 20px; /* updated */
+    margin: 10px;
+}
+
+.card:hover {
+    background-color: #444; /* new hover effect */
+}
+
+.cycle-progress-bar-container {
+    width: 100%; /* new */
+    background-color: #555; /* updated */
+    border-radius: 5px; /* new */
+    overflow: hidden; /* new */
+}
+
+.cycle-progress-bar, .progress-bar2 {
+    height: 5px;
+    background: linear-gradient(to right, #0088ff, #00ff88);
+    transition: width 0.5s ease; /* new */
+}
+
+/* New typography styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #ddd;
+}
+
+.header-item p, .card h2 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* new */
+}
+
+
+/* Button styling */
+button {
+    background-color: #252525; /* Dark background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #444; /* Slightly lighter on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+}
+
+button:active {
+    transform: scale(0.95); /* Slightly smaller when clicked */
+}
+
+.navbar {
+    display: flex;
+    justify-content: center; /* Centers the buttons if needed */
+    gap: 10px; /* Adds space between buttons */
+}
