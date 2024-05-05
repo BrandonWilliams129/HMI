@@ -45,7 +45,7 @@ function nextCapChange() {
 updateTime();
 setInterval(updateTime, 1000); // Update the time every 1000 milliseconds (1 second)
 
-const targetTime = 43; // Target time in seconds
+const targetTime = 5; // Target time in seconds
 let currentCycleTime = 0; // Start at 0
 
 function UpdateCurrentCycleTime() {
@@ -69,4 +69,212 @@ document.querySelectorAll('.interactive-card').forEach(card => {
     card.addEventListener('click', function() {
         alert('Clicked on: ' + this.id); // This can be replaced with a function to open a detailed view or perform other actions
     });
+});
+
+function UpdateCurrentCycleTime() {
+    let percentage = (currentCycleTime / targetTime) * 100;
+    percentage = Math.min(100, percentage);
+    document.getElementById('currentCycleTime').textContent = currentCycleTime;
+    document.getElementById('cycle-progress-bar').style.width = `${percentage}%`;
+
+    currentCycleTime++;
+
+    if (currentCycleTime >= targetTime) {
+        currentCycleTime = 0;
+        incrementBinCount(); // Call a function to increment the bin count
+    }
+}
+
+function incrementBinCount() {
+    let binCountElement = document.getElementById('binCount');
+    let binProgressBar = document.getElementById('bin-progress-bar');
+    let currentBinCount = parseInt(binCountElement.textContent);
+    let targetBinCount = 4; // Adjust this to your actual target bin count
+
+    currentBinCount += 1; // Increment the bin count
+    binCountElement.textContent = currentBinCount; // Update the text content
+
+    // Calculate the new width of the bin progress bar
+    let newWidth = (currentBinCount / targetBinCount) * 100;
+    newWidth = Math.min(newWidth, 100); // Ensure the width doesn't exceed 100%
+    binProgressBar.style.width = `${newWidth}%`; // Update the progress bar width
+
+    if (currentBinCount == targetBinCount +1) {
+        binCountElement.textContent = 0; // Reset the bin count if it reaches or exceeds the target
+        binProgressBar.style.width = `${0}%`; // Reset the progress bar
+    }
+}
+
+function drawFirstShiftGraph() {
+    const ctx = document.getElementById('firstShiftGraph').getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400); // Adjust gradient direction and area based on your specific needs
+    gradient.addColorStop(0.6, '#0088ff'); // End color
+    gradient.addColorStop(0.1, '#00ff88'); // Start color
+
+    const firstShiftGraph = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm'],
+            datasets: [{
+                label: 'Parts Produced',
+                data: [76, 82, 69, 81, 54, 23, 71, ],
+                borderColor: gradient,
+                borderWidth: 3,
+                fill: false // Set to false if you only want to color the line
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#FFFFFF', // Change to white or another high-contrast color
+                        font: {
+                            size: 16 // Optional: Change font size for better readability
+                        }
+                    },
+                    grid: {
+                        borderColor: '#648380', // Green border for the grid
+                        color: '#648380' // Green grid lines
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#FFFFFF', // Change to white or another high-contrast color
+                        font: {
+                            size: 16 // Optional: Change font size for better readability
+                        }
+                    },
+                    grid: {
+                        borderColor: '#648380', // Green border for the grid
+                        color: '#648380' // Green grid lines
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+function drawSecondShiftGraph() {
+    const ctx = document.getElementById('secondShiftGraph').getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400); // Adjust gradient direction and area based on your specific needs
+    gradient.addColorStop(0.6, '#0088ff'); // End color
+    gradient.addColorStop(0.1, '#00ff88'); // Start color
+
+    const secondShiftGraph = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm'],
+            datasets: [{
+                label: 'Parts Produced',
+                data: [86, 82, 71, 81, 66, 80, 88, 75],
+                borderColor: gradient,
+                borderWidth: 3,
+                fill: false // Set to false if you only want to color the line
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#FFFFFF', // Change to white or another high-contrast color
+                        font: {
+                            size: 16 // Optional: Change font size for better readability
+                        }
+                    },
+                    grid: {
+                        borderColor: '#648380', // Green border for the grid
+                        color: '#648380' // Green grid lines
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#FFFFFF', // Change to white or another high-contrast color
+                        font: {
+                            size: 16 // Optional: Change font size for better readability
+                        }
+                    },
+                    grid: {
+                        borderColor: '#648380', // Green border for the grid
+                        color: '#648380' // Green grid lines
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+function drawThirdShiftGraph() {
+    const ctx = document.getElementById('thirdShiftGraph').getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400); // Adjust gradient direction and area based on your specific needs
+    gradient.addColorStop(0.6, '#0088ff'); // End color
+    gradient.addColorStop(0.1, '#00ff88'); // Start color
+
+    const thirdShiftGraph = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['10pm', '11pm', '12am', '1am', '2am', '3am', '4am', '5am'],
+            datasets: [{
+                label: 'Parts Produced',
+                data: [69, 80, 70, 81, 33, 23, 5, 60],
+                borderColor: gradient,
+                borderWidth: 3,
+                fill: false // Set to false if you only want to color the line
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#FFFFFF', // Change to white or another high-contrast color
+                        font: {
+                            size: 16 // Optional: Change font size for better readability
+                        }
+                    },
+                    grid: {
+                        borderColor: '#648380', // Green border for the grid
+                        color: '#648380' // Green grid lines
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#FFFFFF', // Change to white or another high-contrast color
+                        font: {
+                            size: 16 // Optional: Change font size for better readability
+                        }
+                    },
+                    grid: {
+                        borderColor: '#648380', // Green border for the grid
+                        color: '#648380' // Green grid lines
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+
+// Call this function on page load or when the production screen is shown
+
+document.addEventListener('DOMContentLoaded', function() {
+    drawFirstShiftGraph();
+    drawSecondShiftGraph();
+    drawThirdShiftGraph(); // Draw all graphs after the DOM is fully loaded
 });

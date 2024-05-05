@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HMI Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest"></script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
     <section class="card cycle-time">
         <h2>Cycle Time</h2>
         <p>Current: <span id="currentCycleTime">0</span></p>
-        <p>Target: <span id="targetTime">00:46</span></p>
+        <p>Target: <span id="targetTime">00:08</span></p>
         <div class="cycle-progress-bar-container">
             <div id="cycle-progress-bar" class="cycle-progress-bar"></div>
         </div>
@@ -50,138 +51,28 @@
     <!-- Bin Count Section -->
     <section class="card bin-count">
         <h2>Bin Count</h2>
-        <p>Current: <span>49</span></p>
-        <p>Target: <span>170</span></p>
-        <div class="progress-bar-container"><div class="progress-bar2"></div></div>
+        <p>Current: <span id="binCount">0</span></p>
+        <p>Target: <span>4</span></p>
+        <div class="cycle-progress-bar-container">
+            <div id="bin-progress-bar" class="bin-progress-bar"></div>
+        </div>
     </section>
     <!-- Shift Details Sections -->
     <!-- First Shift Section -->
     <section class="card shift" id="first-shift">
         <h2>1st Shift</h2>
-        <table>
-            <tr><th>Hour</th><th>Parts Produced</th></tr>
-            <!-- Row template, repeat as needed -->
-            <tr>
-                <td>5am - 6am</td>
-                <td>76</td>
-              </tr>
-              <tr>
-                <td>6am - 7am</td>
-                <td>82</td>
-              </tr>
-              <tr>
-                <td>7am - 8am</td>
-                <td>69</td>
-              </tr>
-              <tr>
-                <td>8am - 9am</td>
-                <td>81</td>
-              </tr>
-              <tr>
-                <td>9am - 10am</td>
-                <td>54</td>
-              </tr>
-              <tr>
-                <td>10am - 11am</td>
-                <td>88</td>
-              </tr>
-              <tr>
-                <td>11am - 12pm</td>
-                <td>71</td>
-              </tr>
-              <tr>
-                <td>12pm - 1pm</td>
-                <td>81</td>
-              </tr>
-            <!-- Add more rows here for additional hours -->
-        </table>
+        <canvas id="firstShiftGraph" style="width:100%; height:250px;"></canvas>
     </section>
     <!-- Second Shift Section -->
     <section class="card shift" id="second-shift">
         <h2>2nd Shift</h2>
-        <table>
-            <tr>
-                <th>Hour</th>
-                <th>Parts Produced</th>
-              </tr>
-              <!-- Table Rows -->
-              <tr>
-                <td>1pm - 2pm</td>
-                <td></td>
-                <tr>
-                  <td>2pm - 3pm</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>3pm - 4pm</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>4pm - 5pm</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>5pm - 6pm</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>6pm - 7pm</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>7pm - 8pm</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>8pm - 9pm</td>
-                  <td></td>
-                </tr>
-              </tr>
-        </table>
+        <canvas id="secondShiftGraph" style="width:100%; height:250px;"></canvas>
     </section>
     <!-- Third Shift Section -->
     <section class="card shift" id="third-shift">
         <h2>3rd Shift</h2>
-        <table>
-            <tr>
-              <th>Hour</th>
-              <th>Parts Produced</th>
-            </tr>
-            <!-- Table Rows -->
-            <tr>
-              <td>9pm - 10pm</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>10pm - 11pm</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>11pm - 12am</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>12am - 1am</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>1am - 2am</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>2am - 3am</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>3am - 4am</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>4am - 5am</td>
-              <td></td>
-            </tr>
-          </table>
-    </section>
+        <canvas id="thirdShiftGraph" style="width:100%; height:250px;"></canvas>
+    </section>  
 </div>
 
 <!-- Robot Status Screen, initially hidden -->
@@ -202,10 +93,35 @@
         <p>ROBOT 2&nbsp;</p>
         <p>status: running</p>
     </div>
-    <div id="card3" class="card interactive-card">
+    <div id="card4" class="card interactive-card">
         <img src="images/BotIconFault.png" alt="Robot Faulted" class="status-icon">
         <p>ROBOT 3&nbsp;</p>
         <p>status: Fault</p>
+    </div>
+    <div id="card3" class="card interactive-card">
+        <img src="images/BotIconActive.png" alt="Robot Running" class="status-icon">
+        <p>ROBOT 4&nbsp;</p>
+        <p>status: running</p>
+    </div>
+    <div id="card5" class="card interactive-card">
+        <img src="images/BotIconActive.png" alt="Robot Running" class="status-icon">
+        <p>ROBOT 5&nbsp;</p>
+        <p>status: running</p>
+    </div>
+    <div id="card6" class="card interactive-card">
+        <img src="images/BotIconActive.png" alt="Robot Running" class="status-icon">
+        <p>ROBOT 6&nbsp;</p>
+        <p>status: running</p>
+    </div>
+    <div id="card7" class="card interactive-card">
+        <img src="images/BotIconActive.png" alt="Robot Running" class="status-icon">
+        <p>ROBOT 7&nbsp;</p>
+        <p>status: running</p>
+    </div>
+    <div id="card8" class="card interactive-card">
+        <img src="images/BotIconActive.png" alt="Robot Running" class="status-icon">
+        <p>ROBOT 8&nbsp;</p>
+        <p>status: running</p>
     </div>
     
     <!-- Add other cards as needed -->

@@ -90,11 +90,11 @@ body, html {
     height: 5px; /* Ensuring height is defined for better visibility */
 }
 
-.cycle-progress-bar, .progress-bar2 {
+.cycle-progress-bar, .bin-progress-bar {
     height: 5px;
     background-color: #9eff4e;
     border-radius: 5px;
-    width: 50%; /* Start width, change via JavaScript */
+    width: 0%; /* Start width, change via JavaScript */
     transition: width 0.5s ease-out;
 }
 
@@ -177,7 +177,7 @@ body, html {
     overflow: hidden; /* new */
 }
 
-.cycle-progress-bar, .progress-bar2 {
+.cycle-progress-bar, .bin-progress-bar {
     height: 5px;
     background: linear-gradient(to right, #0088ff, #00ff88);
     transition: width 0.5s ease; /* new */
